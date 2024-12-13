@@ -1,0 +1,66 @@
+<!--
+Name of the student: Ali Mohamed Ali Hassan
+Student ID: 202105103
+Course name: Internet Software Development
+Course code: ITCS333
+Assignment 3
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="Data Encoder" charset="UTF-8">
+  <meta name="Page Boundary" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>University Data Statistics</title>
+</head>
+<body>
+  <script>
+    // This function retrieve data from the link and decode the link by parsing it with JSON
+    // The console log functions have been called for debugging purposes
+    async function getData() {
+      const response = await fetch("https://data.gov.bh/api/explore/v2.1/catalog/datasets/01-statistics-of-students-nationalities_updated/records?where=colleges%20like%20\"IT\"%20AND%20the_programs%20like%20\"bachelor\"&limit=100");
+      console.log(response); // This will display full details of the information retrieved from the link without parsing
+      console.log(response.ok); // Returns boolean value
+      console.log(response.status); // Returns an integer value
+      console.log(response.headers); // Returns available methods to be called with this constant
+      const data = await response.json(); // With this line of code, the retrieved data have been parsed for better readability and usability
+      console.log("Data retrieved from API link: ");
+      console.log(data["results"]);
+      // I decided to keep this loop in this script tag due to its limitations of displaying the result on the page
+      for (let i = 0; i < data["results"].length; i++) {
+        // This constant variable will add more rows to the table that was created below this html file
+        const myTable = document.getElementById('dataTables').innerHTML += `
+           <tr class="fa-clipboard" data-clipboard-text="${data["results"][i]}">
+            <td class="design">${data["results"][i]["year"]}</td>
+            <td class="design">${data["results"][i]["semester"]}</td>
+            <td class="design">${data["results"][i]["colleges"]}</td>
+            <td class="design">${data["results"][i]["nationality"]}</td>
+            <td class="design">${data["results"][i]["the_programs"]}</td>
+            <td class="design">${data["results"][i]["number_of_students"]}</td>
+           </tr>
+        `;
+        // This function have been called to trace the result of the table on html with added rows
+        console.log(myTable);
+      }
+    }
+    getData(); // This line of code is similar to inside main method in Java and single line code in Python because with this function call it will execute javascript codes all at once
+  </script>
+  <!-- The webpage starts from this part of the code and ends with the script tag above this code -->
+  <h1 style="text-align: center">Statistics about collected data of the university</h1><br>
+  <!-- This is the table that the javascript code above this file was looking for -->
+  <div class="overflow-auto">
+    <table id="dataTables" class="display">
+      <tr class="fa-clipboard">
+        <th class="design">Year</th> <!-- First column is the academic year -->
+        <th class="design">Semester</th> <!-- Second column is the academic semester of that academic year -->
+        <th class="design">College</th> <!-- Third column is the college name of the university, but all rows have college name as "college of IT" anyway -->
+        <th class="design">Nationality</th> <!-- Fourth column identifies the nationality from the highest count of students' nationalities -->
+        <th class="design">Program</th> <!-- Fifth column is the description for the next column -->
+        <th class="design">Number of students</th> <!-- Sixth column is the result of the previous column and returns the students count -->
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

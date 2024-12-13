@@ -1,0 +1,40 @@
+/*
+Name of the student: Ali Mohamed Ali Hassan
+Student ID: 202105103
+Course name: Internet Software Development
+Course code: ITCS333
+Assignment 3
+ */
+
+
+/* This is the class style for columns */
+.design {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 2px solid black;
+}
+
+/* This is the element style of the header as h1 */
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    background: blue;
+    color: white;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    width: 100%;
+    height: max-content;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    align-self: center;
+}
+
+/* This is the element style of the whole webpage */
+html {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    box-sizing: border-box;
+    width: max-content;
+    margin: auto;
+    height: 100%;
+    background-color: orange;
+}
